@@ -14,97 +14,120 @@
     <Window.Resources>
         <convert:MinValueConverter x:Key="MinValueConverter"/>
     </Window.Resources>
-    
-    
-    <ScrollViewer VerticalScrollBarVisibility="Auto"
-                  CanContentScroll="True">
 
 
-        <StackPanel Margin="16,16,16,16">
-                
-            <TextBlock FontSize="32" Text="WPFのUI要素" Margin="16"/>
+    <DockPanel>
+
+
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="ファイル">
+                <MenuItem Header="新規作成(ダミー)"/>
+                <MenuItem Header="開く(ダミー)"/>
+                <MenuItem Header="保存(ダミー)"/>
+                <Separator/>
+                <MenuItem Header="終了(ダミー)"/>
+            </MenuItem>
+            
+        </Menu>
+        <!-- Menuの説明 -->
+        <Label DockPanel.Dock="Top" FontSize="24" Content="メニューバー（上）" Margin="0,4,0,0"></Label>
+        <TextBlock DockPanel.Dock="Top" Margin="8,0,0,0" Foreground="Crimson">＊まず上に見えるメニューバーは、DockPanelの配置をTopにし配置している</TextBlock>
+        <TextBlock DockPanel.Dock="Top" Margin="8,0,0,0" Foreground="Crimson">＊DockPanelについては下でも説明中</TextBlock>
+        <TextBlock DockPanel.Dock="Top" Margin="8,0,0,0" Foreground="Crimson">＊メニューは、Menuタグで開いて、その中にMenuItem要素として登録する</TextBlock>
+
+        <Separator DockPanel.Dock="Top" Margin="0,8,0,8"/>
+
+        
+        <ScrollViewer 
+            VerticalScrollBarVisibility="Auto"
+            CanContentScroll="True">
+
+
+            <StackPanel Margin="16,16,16,16">
+
+                <TextBlock FontSize="32" Text="WPFのUI要素" Margin="0,0,0,0"/>
 
 
 
-            <!-- RadioButtonの例 -->
-            <Label Margin="0,32,0,0" Content="ラジオボタンの例" FontSize="24"></Label>
-            <RadioButton Margin="16,8,16,0">Option 1</RadioButton>                
-            <RadioButton Margin="16,8,16,0">Option 2</RadioButton>
-            <RadioButton Margin="16,8,16,0">Option 3</RadioButton>
+                <!-- RadioButtonの例 -->
+                <Label Margin="0,32,0,0" Content="ラジオボタンの例" FontSize="24"></Label>
+                <RadioButton Margin="16,8,16,0">Option 1</RadioButton>
+                <RadioButton Margin="16,8,16,0">Option 2</RadioButton>
+                <RadioButton Margin="16,8,16,0">Option 3</RadioButton>
 
-                
-            <!-- CheckBoxの例 -->
-            <Label FontSize="24" Content="BasicなCheckBox" Margin="0,32,0,0"></Label>
-            <CheckBox>何もしていないBasicなCheckBox</CheckBox>
 
-            <!-- そのまま -->
-            <Label FontSize="24" Content="WrapPanelを使うCheckBoxでそのまま" Margin="0,16,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊左上に寄っている</TextBlock>
-            <CheckBox Margin="0,16,0,0">
-                <WrapPanel>
-                    <Image Source="/Resources/img01.PNG" Height="40" />
-                    <Label>イメージの説明です</Label>
-                </WrapPanel>
-            </CheckBox>
-            <!-- CheckBoxにVerticalContentAlignmentを設定 -->
-            <Label x:Name="checkableLabel" FontSize="24" Content="垂直方向Centerに揃えた" Margin="0,16,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊上の例はWrapPanelで、Labelの方を数値入力で微調整</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下の例はGridで、Labelの方を数値入力で微調整</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊クリックしたらビハインドコードで上のラベルを点灯させている</TextBlock>
-            <CheckBox VerticalContentAlignment="Center"
+                <!-- CheckBoxの例 -->
+                <Label FontSize="24" Content="BasicなCheckBox" Margin="0,32,0,0"></Label>
+                <CheckBox>何もしていないBasicなCheckBox</CheckBox>
+
+                <!-- そのまま -->
+                <Label FontSize="24" Content="WrapPanelを使うCheckBoxでそのまま" Margin="0,16,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊左上に寄っている</TextBlock>
+                <CheckBox Margin="0,16,0,0">
+                    <WrapPanel>
+                        <Image Source="/Resources/img01.PNG" Height="40" />
+                        <Label>イメージの説明です</Label>
+                    </WrapPanel>
+                </CheckBox>
+                <!-- CheckBoxにVerticalContentAlignmentを設定 -->
+                <Label x:Name="checkableLabel" FontSize="24" Content="垂直方向Centerに揃えた" Margin="0,16,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊上の例はWrapPanelで、Labelの方を数値入力で微調整</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下の例はGridで、Labelの方を数値入力で微調整</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊クリックしたらビハインドコードで上のラベルを点灯させている</TextBlock>
+                <CheckBox VerticalContentAlignment="Center"
                         Checked="checkableBox_Checked"
                         Unchecked="checkableBox_Unchecked"
                         Margin="0,16,0,0">
-                <WrapPanel>
-                    <Image Source="/Resources/img01.PNG" Height="40" />
-                        
-                    <!-- WrapPanelは、子要素を上の端を揃える。また、Labelも規定値でPaddingを持っている -->
-                    <!-- なので、LabelのPaddingを０にし、大きさ、ここではイメージの高さとも同じにし、高さの中央揃えもする。 -->
-                    <Label 
+                    <WrapPanel>
+                        <Image Source="/Resources/img01.PNG" Height="40" />
+
+                        <!-- WrapPanelは、子要素を上の端を揃える。また、Labelも規定値でPaddingを持っている -->
+                        <!-- なので、LabelのPaddingを０にし、大きさ、ここではイメージの高さとも同じにし、高さの中央揃えもする。 -->
+                        <Label 
                         Margin="6,0,0,0"
                         Height="40" 
                         VerticalContentAlignment="Center" 
                         Padding="0">イメージの説明です</Label>
-                </WrapPanel>
-            </CheckBox>
-            <!-- CheckBoxにVerticalContentAlignmentを設定 + GRIDを使う！ -->
-            <CheckBox VerticalContentAlignment="Center"
+                    </WrapPanel>
+                </CheckBox>
+                <!-- CheckBoxにVerticalContentAlignmentを設定 + GRIDを使う！ -->
+                <CheckBox VerticalContentAlignment="Center"
                         Checked="checkableBox_Checked"
                         Unchecked="checkableBox_Unchecked"
                         Margin="0,16,0,0"
                         >
-                <Grid>
-                    <!-- 横方向に ２列を作る -->
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="Auto"/>
-                        <ColumnDefinition Width="Auto"/>
-                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <!-- 横方向に ２列を作る -->
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
 
-                    <Image 
+                        <Image 
                         Source="/Resources/img01.PNG"
                         Height="40"
                         VerticalAlignment="Center"/>
 
-                    <TextBlock Grid.Column="1"
+                        <TextBlock Grid.Column="1"
                         Text="イメージの説明です"
                         Margin="6,0,0,0"
                         VerticalAlignment="Center"/>
-                </Grid>
-            </CheckBox>
+                    </Grid>
+                </CheckBox>
 
 
 
 
 
 
-            <!-- Slider -->
-            <Label FontSize="24" Content="BasicなSlider" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊何もしていない状態</TextBlock>
-            <Slider Margin="16,16,16,16"></Slider>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Maximumと、TickPlacement、TickFrequencyを設定</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊IsSnapToTickEnabledでSnapするようになる</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊イベント処理で、下のTextBlockに現在の値を表示し、同時に値表示のフォントサイズを連動させた</TextBlock>
-            <Slider Margin="16,16,16,16"
+                <!-- Slider -->
+                <Label FontSize="24" Content="BasicなSlider" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊何もしていない状態</TextBlock>
+                <Slider Margin="16,16,16,16"></Slider>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Maximumと、TickPlacement、TickFrequencyを設定</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊IsSnapToTickEnabledでSnapするようになる</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊イベント処理で、下のTextBlockに現在の値を表示し、同時に値表示のフォントサイズを連動させた</TextBlock>
+                <Slider Margin="16,16,16,16"
                     Value="10"
                     Maximum="100"
                     TickPlacement="BottomRight"
@@ -113,65 +136,65 @@
                     IsSnapToTickEnabled="True"
                     x:Name="sliderTickSnapped"
                     ValueChanged="sliderTickSnapped_ValueChanged"></Slider>
-            <TextBlock x:Name="sliderValue"
+                <TextBlock x:Name="sliderValue"
                         HorizontalAlignment="Center"
                         Text="Sliderを動かしてください"></TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下はDatabindingを使って同じことをしている</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Databindingでは、上のようにBehindCodeで０の値をチェックしていない。よって、0が適用され、エラーが出る。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊よって、ここで別フォルダーとcsファイルを作り、その機能を使っている。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊別ファイルを使うため、xmlns:convert="clr-namespace:BasicUIProject.Converter"から追加する必要がある。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊そのあと、Window.Resourcesの設定をしてconvert:MinValueConverter x:Key="MinValueConverter" する</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊これは、xmlnsでIncludeしてきたものを、一つインスタンス化し、辞書に入れておく行為にあたる。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊それで、以下の要素では、Converter={StaticResource MinValueConverter} によってそのリソースにアクセスし機能を使うことができる。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ConverterParameter=10の設定で、カスタムな機能MinValueConverterの関数が持つ「object parameter」という引数に、この値が繋がる。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊結果、FontSizeが０になるとき、カスタムな機能が働いて、「値を修正して0にならなくして」くれる。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下はDatabindingを使って同じことをしている</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Databindingでは、上のようにBehindCodeで０の値をチェックしていない。よって、0が適用され、エラーが出る。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊よって、ここで別フォルダーとcsファイルを作り、その機能を使っている。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊別ファイルを使うため、xmlns:convert="clr-namespace:BasicUIProject.Converter"から追加する必要がある。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊そのあと、Window.Resourcesの設定をしてconvert:MinValueConverter x:Key="MinValueConverter" する</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊これは、xmlnsでIncludeしてきたものを、一つインスタンス化し、辞書に入れておく行為にあたる。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊それで、以下の要素では、Converter={StaticResource MinValueConverter} によってそのリソースにアクセスし機能を使うことができる。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ConverterParameter=10の設定で、カスタムな機能MinValueConverterの関数が持つ「object parameter」という引数に、この値が繋がる。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊結果、FontSizeが０になるとき、カスタムな機能が働いて、「値を修正して0にならなくして」くれる。</TextBlock>
 
 
-            <!-- DataBindingでSliderの値をTextBlockに反映させる -->
-            <!-- ＊別フォルダーConverterのMinValueConverter.csの機能を使っている!!! -->
-            <TextBlock x:Name="sliderValueBinded"
+                <!-- DataBindingでSliderの値をTextBlockに反映させる -->
+                <!-- ＊別フォルダーConverterのMinValueConverter.csの機能を使っている!!! -->
+                <TextBlock x:Name="sliderValueBinded"
                         HorizontalAlignment="Center"
                         Text="{Binding ElementName=sliderTickSnapped, Path=Value, StringFormat='Value（Binding）: {0:F0}'}"
                         FontSize="{Binding ElementName=sliderTickSnapped, Path=Value, 
                                             UpdateSourceTrigger=PropertyChanged, 
                                             Converter={StaticResource MinValueConverter},
                                             ConverterParameter=10}">
-            </TextBlock>
+                </TextBlock>
 
 
-            <!-- HyperLink -->
-            <Label FontSize="24" Content="HyperLink" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="16,0,0,0">
+                <!-- HyperLink -->
+                <Label FontSize="24" Content="HyperLink" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="16,0,0,0">
                 <Run>前のテキスト </Run>
                 <Hyperlink NavigateUri="https://coaramause.com"
                             RequestNavigate="Hyperlink_RequestNavigate">
                     リンク
                 </Hyperlink>
                 <Run> 後のテキスト</Run>
-            </TextBlock>
+                </TextBlock>
 
-                
 
-            <!-- Labelの詳細設定、内部コンテンツあり -->
-            <Label FontSize="24" Content="色塗りしたLabel" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ラベルの中にStackPanelでイメージとAccessTextを入れている</TextBlock>
-            <Label Margin="16,16,16,0"
+
+                <!-- Labelの詳細設定、内部コンテンツあり -->
+                <Label FontSize="24" Content="色塗りしたLabel" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ラベルの中にStackPanelでイメージとAccessTextを入れている</TextBlock>
+                <Label Margin="16,16,16,0"
                     BorderThickness="1"
                     BorderBrush="Black">
 
-                <StackPanel Orientation="Horizontal">
-                    <Image Width="32" Source="https://coaramause.com/static/imgs/favicon-32x32.png"/>
-                    <AccessText Text="これはラベルのテキストです"/>
-                </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="32" Source="https://coaramause.com/static/imgs/favicon-32x32.png"/>
+                        <AccessText Text="これはラベルのテキストです"/>
+                    </StackPanel>
 
-            </Label>
+                </Label>
 
-                
-                
-            <!-- TextBoxの例 -->
-            <Label FontSize="24" Content="テキストボックス（入力可能）＋ボタンクリックで変更させる" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタン処理はイベントハンドラー登録とビハインドコードで処理（テキストの内容を変更）</TextBlock>
-            <TextBox
+
+
+                <!-- TextBoxの例 -->
+                <Label FontSize="24" Content="テキストボックス（入力可能）＋ボタンクリックで変更させる" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタン処理はイベントハンドラー登録とビハインドコードで処理（テキストの内容を変更）</TextBlock>
+                <TextBox
                 x:Name="textBoxWillChangeLater"
                 FontSize="30"
                 Margin="16,16,16,16"
@@ -180,152 +203,152 @@
                 Background="Beige"
                 Foreground="Brown"
                 Text="Initial Texts"></TextBox>
-            <Button 
+                <Button 
                 x:Name="hiButton"
                 Width="100"
                 Height="40"
                 Click="ButtonClick">テキストを変更！</Button>
 
-                
-            <!-- Image -->
-            <Label FontSize="24" Content="イメージの表示" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊何もしなければ中央揃え</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊MouseUpとMouseDownイベント処理によってイメージを差し替えている</TextBlock>
-            <Image Source="/Resources/img02.PNG"
+
+                <!-- Image -->
+                <Label FontSize="24" Content="イメージの表示" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊何もしなければ中央揃え</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊MouseUpとMouseDownイベント処理によってイメージを差し替えている</TextBlock>
+                <Image Source="/Resources/img02.PNG"
                     Width="300"
                     Margin="0,16,0,0"
                     x:Name="clickableImage"
                     MouseUp="clickableImage_MouseUp"
                     MouseDown="clickableImage_MouseDown"></Image>
 
-            <!-- Calendar-->
-            <Label FontSize="24" Content="カレンダー" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊カレンダー、Basicな状態</TextBlock>
-            <Calendar></Calendar>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊選択された日付をTextBlockで表示</TextBlock>
-            <Calendar
+                <!-- Calendar-->
+                <Label FontSize="24" Content="カレンダー" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊カレンダー、Basicな状態</TextBlock>
+                <Calendar></Calendar>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊選択された日付をTextBlockで表示</TextBlock>
+                <Calendar
                 x:Name="sampleCalendar"
                 SelectedDate="01.01.2026"
                 SelectedDatesChanged="sampleCalendar_SelectedDatesChanged"></Calendar>
-            <TextBlock
+                <TextBlock
                 x:Name="selectedDateTextBlock"></TextBlock>
 
-            <!-- DatePicker -->
-            <Label FontSize="24" Content="DatePicker" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊DatePickerで、文字入力もできてカレンダーも使えるように</TextBlock>
-            <DatePicker></DatePicker>
+                <!-- DatePicker -->
+                <Label FontSize="24" Content="DatePicker" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊DatePickerで、文字入力もできてカレンダーも使えるように</TextBlock>
+                <DatePicker></DatePicker>
 
-                
-            <!-- Expander -->
-            <Label FontSize="24" Content="Expander" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Expanderで要素を隠したり表示させることができる</TextBlock>
 
-            <Expander>
-                <StackPanel>
-                    <DatePicker></DatePicker>
-                    <TextBlock>長い長い文章など</TextBlock>
-                    <TextBlock>長い長い文章など</TextBlock>
-                    <TextBlock>長い長い文章など</TextBlock>
-                    <TextBlock>長い長い文章など</TextBlock>
+                <!-- Expander -->
+                <Label FontSize="24" Content="Expander" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Expanderで要素を隠したり表示させることができる</TextBlock>
+
+                <Expander>
+                    <StackPanel>
+                        <DatePicker></DatePicker>
+                        <TextBlock>長い長い文章など</TextBlock>
+                        <TextBlock>長い長い文章など</TextBlock>
+                        <TextBlock>長い長い文章など</TextBlock>
+                        <TextBlock>長い長い文章など</TextBlock>
+                    </StackPanel>
+                </Expander>
+
+
+
+                <!-- Grid -->
+                <Label FontSize="24" Content="Grid" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Grid設定で、列の設定（1*と2*で幅を設定し１対２の比率にする）</TextBlock>
+
+                <Grid Margin="0,16,0,0">
+                    <!-- 横方向に ２列を作る -->
+                    <Grid.ColumnDefinitions>
+                        <!-- 1* は、均等割り付け -->
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Button Grid.Column="0">Grid Column 0 のボタン</Button>
+                    <Button Grid.Column="1">Grid Column 1 のボタン</Button>
+
+                </Grid>
+
+                <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊RowDefinitionsで行を設定し、Grid.Rowで位置する行を設定できる</TextBlock>
+
+                <Grid Margin="0,16,0,0">
+                    <!-- 横方向に ２列を作る -->
+                    <Grid.ColumnDefinitions>
+                        <!-- 1* は、均等割り付け -->
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="2*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"></RowDefinition>
+                        <RowDefinition Height="80"></RowDefinition>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Column="0">Grid Column 0 のボタン</Button>
+                    <Button Grid.Column="1" Grid.Row="1">Grid Column 1 (Rowは1) のボタン</Button>
+                    <Button Grid.Column="2">Grid Column 2 のボタン</Button>
+
+                </Grid>
+
+
+                <!-- Grid Spanning -->
+                <Label FontSize="24" Content="Grid Spanning" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊要素の中でGrid.ColumnSpanを設定することで「伸ばす」ことができる</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊現状Gridは、Columnは4つ、Rowは2つで設定</TextBlock>
+                <Grid Margin="0,16,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="40"/>
+                    </Grid.RowDefinitions>
+
+                    <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">ボタン0,0に位置、でもSpanして伸ばした</Button>
+                    <Button Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">ボタン0,3に位置、でもSpanして伸ばした</Button>
+
+                    <TextBlock Text="テキスト0,1" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orchid"/>
+                    <TextBlock Text="テキスト1,1でも長 ～ ～ ～ ～ ～ ～ ～ ～ ～ ～ いのでSpanした" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightBlue"/>
+
+                </Grid>
+
+                <!-- StackPanel -->
+                <Label FontSize="24" Content="StackPanel" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊StackPanelは詰めて配置する性質</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタンに対して何もしなければ垂直方向に積もれた形で伸びていく</TextBlock>
+
+                <StackPanel Margin="0,16,0,0">
+                    <Button >ボタン 1</Button>
+                    <Button >ボタン 2</Button>
+                    <Button >ボタン 3</Button>
                 </StackPanel>
-            </Expander>
 
-                
-                
-            <!-- Grid -->
-            <Label FontSize="24" Content="Grid" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Grid設定で、列の設定（1*と2*で幅を設定し１対２の比率にする）</TextBlock>
-
-            <Grid Margin="0,16,0,0">
-                <!-- 横方向に ２列を作る -->
-                <Grid.ColumnDefinitions>
-                    <!-- 1* は、均等割り付け -->
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-
-                <Button Grid.Column="0">Grid Column 0 のボタン</Button>
-                <Button Grid.Column="1">Grid Column 1 のボタン</Button>
-
-            </Grid>
-
-            <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊RowDefinitionsで行を設定し、Grid.Rowで位置する行を設定できる</TextBlock>
-
-            <Grid Margin="0,16,0,0">
-                <!-- 横方向に ２列を作る -->
-                <Grid.ColumnDefinitions>
-                    <!-- 1* は、均等割り付け -->
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="2*"/>
-                    <ColumnDefinition Width="2*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"></RowDefinition>
-                    <RowDefinition Height="80"></RowDefinition>
-                </Grid.RowDefinitions>
-                
-                <Button Grid.Column="0">Grid Column 0 のボタン</Button>
-                <Button Grid.Column="1" Grid.Row="1">Grid Column 1 (Rowは1) のボタン</Button>
-                <Button Grid.Column="2">Grid Column 2 のボタン</Button>
-
-            </Grid>
-
-
-            <!-- Grid Spanning -->
-            <Label FontSize="24" Content="Grid Spanning" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊要素の中でGrid.ColumnSpanを設定することで「伸ばす」ことができる</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊現状Gridは、Columnは4つ、Rowは2つで設定</TextBlock>
-            <Grid Margin="0,16,0,0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                    <ColumnDefinition Width="1*"/>
-                </Grid.ColumnDefinitions>
-
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="40"/>
-                    <RowDefinition Height="40"/>
-                </Grid.RowDefinitions>
-
-                <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="2">ボタン0,0に位置、でもSpanして伸ばした</Button>
-                <Button Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">ボタン0,3に位置、でもSpanして伸ばした</Button>
-
-                <TextBlock Text="テキスト0,1" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orchid"/>
-                <TextBlock Text="テキスト1,1でも長 ～ ～ ～ ～ ～ ～ ～ ～ ～ ～ いのでSpanした" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightBlue"/>
-
-            </Grid>
-
-            <!-- StackPanel -->
-            <Label FontSize="24" Content="StackPanel" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊StackPanelは詰めて配置する性質</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタンに対して何もしなければ垂直方向に積もれた形で伸びていく</TextBlock>
-
-            <StackPanel Margin="0,16,0,0">
-                <Button >ボタン 1</Button>
-                <Button >ボタン 2</Button>
-                <Button >ボタン 3</Button>
-            </StackPanel>
-            
-            <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊HorizontalAlignmentなどを要素に適用すると配置が変わる</TextBlock>
-            <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊下は、StackPanelによって積もれて行きつつ、AlignmentをLeft、Center、Right、Stretchに設定している</TextBlock>
-            <StackPanel Margin="0,16,0,0">
-                <Button HorizontalAlignment="Left">ボタン Left</Button>
-                <Button HorizontalAlignment="Center">ボタン Center</Button>
-                <Button HorizontalAlignment="Right">ボタン Right</Button>
-                <Button HorizontalAlignment="Stretch">ボタン Stretch</Button>
-            </StackPanel>
+                <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊HorizontalAlignmentなどを要素に適用すると配置が変わる</TextBlock>
+                <TextBlock Margin="8,16,0,0" Foreground="Crimson">＊下は、StackPanelによって積もれて行きつつ、AlignmentをLeft、Center、Right、Stretchに設定している</TextBlock>
+                <StackPanel Margin="0,16,0,0">
+                    <Button HorizontalAlignment="Left">ボタン Left</Button>
+                    <Button HorizontalAlignment="Center">ボタン Center</Button>
+                    <Button HorizontalAlignment="Right">ボタン Right</Button>
+                    <Button HorizontalAlignment="Stretch">ボタン Stretch</Button>
+                </StackPanel>
 
 
 
-            <!-- WrapPanel -->
-            <Label FontSize="24" Content="WrapPanel" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊WrapPanelはDefaultだと要素を横に積んでいき、Windowの幅以上のとき改行する。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタン1に高さを100pxにしているが、その設定を横のボタンは流用し同じ高さになっている。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊でも、下の行に改行した場合、その影響はなくなり、規定値に戻る。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下のスライダーでボタン1の幅を調整できる(DataBinding使用)</TextBlock>
-            <Slider x:Name="wrapPanelWidthSlider"
+                <!-- WrapPanel -->
+                <Label FontSize="24" Content="WrapPanel" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊WrapPanelはDefaultだと要素を横に積んでいき、Windowの幅以上のとき改行する。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ボタン1に高さを100pxにしているが、その設定を横のボタンは流用し同じ高さになっている。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊でも、下の行に改行した場合、その影響はなくなり、規定値に戻る。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下のスライダーでボタン1の幅を調整できる(DataBinding使用)</TextBlock>
+                <Slider x:Name="wrapPanelWidthSlider"
                     Margin="0,16,0,0"
                     Value="200"
                     Minimum="100"
@@ -333,73 +356,79 @@
                     TickFrequency="10"
                     IsSnapToTickEnabled="True"
                     TickPlacement="BottomRight"/>
-            
-            <WrapPanel Margin="0,16,0,0">
-                <Button Width="{Binding ElementName=wrapPanelWidthSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Height="100">ボタン 1</Button>
-                <Button Width="500">ボタン 2</Button>
-                <Button >ボタン 3</Button>
-            </WrapPanel>
+
+                <WrapPanel Margin="0,16,0,0">
+                    <Button Width="{Binding ElementName=wrapPanelWidthSlider, Path=Value, UpdateSourceTrigger=PropertyChanged}" Height="100">ボタン 1</Button>
+                    <Button Width="500">ボタン 2</Button>
+                    <Button >ボタン 3</Button>
+                </WrapPanel>
 
 
 
-            <!-- DockPanel -->
-            <Label FontSize="24" Content="DockPanel" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊DockPanelは要素の配置を指定する。DockPanel.Dock="Top"などを何もしないと横に積んでいく。</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊もし、同じDocking方向を持つ要素が複数あれば、その「方向へ」積んでいく。(Rightを参照)</TextBlock>
+                <!-- DockPanel -->
+                <Label FontSize="24" Content="DockPanel" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊DockPanelは要素の配置を指定する。DockPanel.Dock="Top"などを何もしないと横に積んでいく。</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊もし、同じDocking方向を持つ要素が複数あれば、その「方向へ」積んでいく。(Rightを参照)</TextBlock>
 
-            <DockPanel Margin="0,16,0,0" Height="300">
-                <Button DockPanel.Dock="Top" Height="80">TopにDock</Button>
-                <Button DockPanel.Dock="Left" >LeftにDock</Button>
-                <Button DockPanel.Dock="Right">RightにDock</Button>
-                <Button DockPanel.Dock="Right">RightにDock</Button>
-                <Button DockPanel.Dock="Bottom">BottomにDock</Button>
-                <TextBlock>DockPanel設定なしなら残りの領域</TextBlock>
-                
-            </DockPanel>
+                <DockPanel Margin="0,16,0,0" Height="300">
+                    <Button DockPanel.Dock="Top" Height="80">TopにDock</Button>
+                    <Button DockPanel.Dock="Left" >LeftにDock</Button>
+                    <Button DockPanel.Dock="Right">RightにDock</Button>
+                    <Button DockPanel.Dock="Right">RightにDock</Button>
+                    <Button DockPanel.Dock="Bottom">BottomにDock</Button>
+                    <TextBlock>DockPanel設定なしなら残りの領域</TextBlock>
 
-
-
-            <!-- Canvas -->
-            <Label FontSize="24" Content="Canvas" Margin="0,32,0,0"></Label>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Canvasは自由に座標を指定して要素配置できる</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Rectangleで視覚を描画でき、Z深度の健さんもPanel.ZIndexで制御できる</TextBlock>
-
-            <Canvas Margin="0,16,0,0" Height="300" Background="LightGray">
-                
-                <Button Canvas.Left="10" Canvas.Top="10">Left 10, Top 10</Button>
-                <Button Canvas.Right="10" Canvas.Top="50">Right 10, Top 50</Button>
-                <Button Canvas.Left="150" Canvas.Bottom="10">Left 150, Bottom 10</Button>
-
-                <Rectangle Canvas.Left="100" Canvas.Top="50" Width="100" Height="100" Fill="LightCoral"></Rectangle>
-                <Rectangle Panel.ZIndex="3" Canvas.Left="150" Canvas.Top="100" Width="100" Height="100" Fill="Khaki"></Rectangle>
-                <Rectangle Panel.ZIndex="1" Canvas.Left="200" Canvas.Top="150" Width="100" Height="100" Fill="LightSlateGray"></Rectangle>
-                <Ellipse Canvas.Left="350" Canvas.Top="200" Width="120" Height="70" Fill="LightPink"></Ellipse>
-                
-                
-                
-                <Rectangle Canvas.Left="400" Canvas.Top="50" Width="100" Height="100" Fill="LightSteelBlue"
-                           DragEnter="Rectangle_DragEnter"
-                           DragOver="Rectangle_DragOver"
-                           DragLeave="Rectangle_DragLeave"></Rectangle>
-                
-                
-            </Canvas>
+                </DockPanel>
 
 
-            
-            
-            
-            
-            
-            
-            
+
+                <!-- Canvas -->
+                <Label FontSize="24" Content="Canvas" Margin="0,32,0,0"></Label>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Canvasは自由に座標を指定して要素配置できる</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Rectangleで視覚を描画でき、Z深度の健さんもPanel.ZIndexで制御できる</TextBlock>
+                <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊青のRectangleは、イベントハンドラーを設けてドラッグできるようにしている</TextBlock>
+
+                <Canvas Margin="0,16,0,0" Height="300" Background="LightGray">
+
+                    <Button Canvas.Left="10" Canvas.Top="10">Left 10, Top 10</Button>
+                    <Button Canvas.Right="10" Canvas.Top="50">Right 10, Top 50</Button>
+                    <Button Canvas.Left="150" Canvas.Bottom="10">Left 150, Bottom 10</Button>
+
+                    <Rectangle Canvas.Left="100" Canvas.Top="50" Width="100" Height="100" Fill="LightCoral"></Rectangle>
+                    <Rectangle Panel.ZIndex="3" Canvas.Left="150" Canvas.Top="100" Width="100" Height="100" Fill="Khaki"></Rectangle>
+                    <Rectangle Panel.ZIndex="1" Canvas.Left="200" Canvas.Top="150" Width="100" Height="100" Fill="LightSlateGray"></Rectangle>
+                    <Ellipse Canvas.Left="350" Canvas.Top="200" Width="120" Height="70" Fill="LightPink"></Ellipse>
+
+
+                    <!-- ドラッグ可能な四角形 -->
+                    <Rectangle Name="dragRect" Canvas.Left="400" Canvas.Top="50" Width="100" Height="100" Fill="LightSteelBlue"
+                                Cursor="SizeAll"
+                               PreviewMouseLeftButtonDown="dragRect_PreviewMouseLeftButtonDown"
+                               PreviewMouseMove="dragRect_PreviewMouseMove"
+                               PreviewMouseLeftButtonUp="dragRect_PreviewMouseLeftButtonUp"></Rectangle>
+
+                </Canvas>
 
 
 
 
-        </StackPanel>
-                        
-    </ScrollViewer>
+
+
+
+
+
+
+
+
+
+            </StackPanel>
+
+        </ScrollViewer>
+
+
+
+    </DockPanel>
+    
     
     
 </Window>
