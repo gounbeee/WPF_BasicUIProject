@@ -1,0 +1,18 @@
+{
+    "version": "1.0.0",
+    "configurations":[
+        {
+            "name": "Launch Program",
+            "request": "launch",
+            "type": "coreclr",
+            "preLaunchTask": "build",
+            "program": "${workspaceFolder}/bin/Debug/net10.0-windows/BasicUIProject.exe",
+            "cwd": "${workspaceFolder}",
+            "console": "integratedTerminal",
+            "stopAtEntry": false
+        }
+    ]
+
+
+
+}
