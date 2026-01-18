@@ -4,11 +4,18 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BasicUIProject"
+        xmlns:convert="clr-namespace:BasicUIProject.Converter"  
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"
         d:DesignWidth="800" d:DesignHeight="8000">
 
 
+    <!-- Converter のインスタンスを1つ作って MinValueConverter というキーで保存 -->
+    <Window.Resources>
+        <convert:MinValueConverter x:Key="MinValueConverter"/>
+    </Window.Resources>
+    
+    
     <ScrollViewer VerticalScrollBarVisibility="Auto"
                   CanContentScroll="True">
 
@@ -110,16 +117,31 @@
                         HorizontalAlignment="Center"
                         Text="Sliderを動かしてください"></TextBlock>
             <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊下はDatabindingを使って同じことをしている</TextBlock>
-            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Databindingでは、上のようにBehindCodeで０の値をチェックしていない。よって、0が適用され基本の値になった</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Databindingでは、上のようにBehindCodeで０の値をチェックしていない。よって、0が適用され、エラーが出る。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊よって、ここで別フォルダーとcsファイルを作り、その機能を使っている。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊別ファイルを使うため、xmlns:convert="clr-namespace:BasicUIProject.Converter"から追加する必要がある。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊そのあと、Window.Resourcesの設定をしてconvert:MinValueConverter x:Key="MinValueConverter" する</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊これは、xmlnsでIncludeしてきたものを、一つインスタンス化し、辞書に入れておく行為にあたる。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊それで、以下の要素では、Converter={StaticResource MinValueConverter} によってそのリソースにアクセスし機能を使うことができる。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊ConverterParameter=10の設定で、カスタムな機能MinValueConverterの関数が持つ「object parameter」という引数に、この値が繋がる。</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊結果、FontSizeが０になるとき、カスタムな機能が働いて、「値を修正して0にならなくして」くれる。</TextBlock>
+
+
+            <!-- DataBindingでSliderの値をTextBlockに反映させる -->
+            <!-- ＊別フォルダーConverterのMinValueConverter.csの機能を使っている!!! -->
             <TextBlock x:Name="sliderValueBinded"
                         HorizontalAlignment="Center"
                         Text="{Binding ElementName=sliderTickSnapped, Path=Value, StringFormat='Value（Binding）: {0:F0}'}"
-                        FontSize="{Binding ElementName=sliderTickSnapped, Path=Value, UpdateSourceTrigger=PropertyChanged}"></TextBlock>
+                        FontSize="{Binding ElementName=sliderTickSnapped, Path=Value, 
+                                            UpdateSourceTrigger=PropertyChanged, 
+                                            Converter={StaticResource MinValueConverter},
+                                            ConverterParameter=10}">
+            </TextBlock>
 
 
             <!-- HyperLink -->
             <Label FontSize="24" Content="HyperLink" Margin="0,32,0,0"></Label>
-            <TextBlock>
+            <TextBlock Margin="16,0,0,0">
                 <Run>前のテキスト </Run>
                 <Hyperlink NavigateUri="https://coaramause.com"
                             RequestNavigate="Hyperlink_RequestNavigate">
@@ -271,7 +293,7 @@
                 <Button Grid.Column="3" Grid.Row="0" Grid.RowSpan="2">ボタン0,3に位置、でもSpanして伸ばした</Button>
 
                 <TextBlock Text="テキスト0,1" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="Orchid"/>
-                <TextBlock Text="テキスト1,1でも長------------------------------------いのでSpanした" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightBlue"/>
+                <TextBlock Text="テキスト1,1でも長 ～ ～ ～ ～ ～ ～ ～ ～ ～ ～ いのでSpanした" Grid.ColumnSpan="2" Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Background="LightBlue"/>
 
             </Grid>
 
@@ -337,7 +359,40 @@
 
 
 
+            <!-- Canvas -->
+            <Label FontSize="24" Content="Canvas" Margin="0,32,0,0"></Label>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Canvasは自由に座標を指定して要素配置できる</TextBlock>
+            <TextBlock Margin="8,0,0,0" Foreground="Crimson">＊Rectangleで視覚を描画でき、Z深度の健さんもPanel.ZIndexで制御できる</TextBlock>
 
+            <Canvas Margin="0,16,0,0" Height="300" Background="LightGray">
+                
+                <Button Canvas.Left="10" Canvas.Top="10">Left 10, Top 10</Button>
+                <Button Canvas.Right="10" Canvas.Top="50">Right 10, Top 50</Button>
+                <Button Canvas.Left="150" Canvas.Bottom="10">Left 150, Bottom 10</Button>
+
+                <Rectangle Canvas.Left="100" Canvas.Top="50" Width="100" Height="100" Fill="LightCoral"></Rectangle>
+                <Rectangle Panel.ZIndex="3" Canvas.Left="150" Canvas.Top="100" Width="100" Height="100" Fill="Khaki"></Rectangle>
+                <Rectangle Panel.ZIndex="1" Canvas.Left="200" Canvas.Top="150" Width="100" Height="100" Fill="LightSlateGray"></Rectangle>
+                <Ellipse Canvas.Left="350" Canvas.Top="200" Width="120" Height="70" Fill="LightPink"></Ellipse>
+                
+                
+                
+                <Rectangle Canvas.Left="400" Canvas.Top="50" Width="100" Height="100" Fill="LightSteelBlue"
+                           DragEnter="Rectangle_DragEnter"
+                           DragOver="Rectangle_DragOver"
+                           DragLeave="Rectangle_DragLeave"></Rectangle>
+                
+                
+            </Canvas>
+
+
+            
+            
+            
+            
+            
+            
+            
 
 
 

@@ -11,6 +11,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using BasicUIProject.Converter;
+
 namespace BasicUIProject;
 
 /// <summary>
@@ -21,7 +23,6 @@ public partial class MainWindow : Window
     public MainWindow()
     {
         InitializeComponent();
-
 
     }
 
@@ -94,6 +95,18 @@ public partial class MainWindow : Window
         }
     }
 
+    private void Rectangle_DragEnter(object sender, DragEventArgs e)
+    {
+        Debug.WriteLine("ドラッグが入りました");
+    }
 
+    private void Rectangle_DragOver(object sender, DragEventArgs e)
+    {
 
+    }
+
+    private void Rectangle_DragLeave(object sender, DragEventArgs e)
+    {
+
+    }
 }
