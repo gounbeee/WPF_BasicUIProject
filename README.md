@@ -1,4 +1,5 @@
 # BasicUIProject
+by Gounbeee
 
 BasicUIProject は .NET を使ったシンプルな UI テンプレートです。
 最新の .NET 機能を利用して、素早くデスクトップ UI アプリケーション（WPF）を立ち上げるための最小限の構成とサンプルを提供します。
