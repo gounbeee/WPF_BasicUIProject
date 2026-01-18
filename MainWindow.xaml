@@ -405,7 +405,8 @@
                                 Cursor="SizeAll"
                                PreviewMouseLeftButtonDown="dragRect_PreviewMouseLeftButtonDown"
                                PreviewMouseMove="dragRect_PreviewMouseMove"
-                               PreviewMouseLeftButtonUp="dragRect_PreviewMouseLeftButtonUp"></Rectangle>
+                               PreviewMouseLeftButtonUp="dragRect_PreviewMouseLeftButtonUp">
+                    </Rectangle>
 
                 </Canvas>
 
